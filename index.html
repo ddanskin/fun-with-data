@@ -8,17 +8,26 @@
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
-        <div class="bar-chart"></div>
-
-        <table class="table table table-hover">
-            <thead>
-                <tr class="head">
-                    <th scope="col" class="head-date">Date</th>
-                    <th scope="col" class="head-price">Price</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="container">
+            <div class="row bars">
+                <div class="col">
+                    <h3>Bar Chart</h3>
+                    <div class="bar-chart"></div>
+                </div>
+            </div>
+            <div class="row tables">
+                <h3>Table of Prices</h3>
+                <table class="table table table-hover">
+                    <thead>
+                        <tr class="head">
+                            <th scope="col" class="head-date">Date</th>
+                            <th scope="col" class="head-price">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
         <script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
