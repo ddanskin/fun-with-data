@@ -16,8 +16,12 @@ const tableData = [
     { date: '7/05/2018', price: 290.00 },
 ];
 
-d3.select("")
+d3.select("tbody")
     .selectAll("tr")
     .data(tableData)
     .enter().append("tr")
+    .html(function(d) {
+        return "<th scope='row'>" + d.date + 
+            "</th><td>" + "$" + d.price + "</td>"
+    })
 
