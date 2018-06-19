@@ -1,3 +1,6 @@
+.bars, .tables {
+    padding: 24px;
+}
 .bar-chart div {
     font: 10px "Monospace";
     background-color: #1c86ee;
@@ -5,4 +8,10 @@
     padding: 3px;
     margin: 1px;
     color: white;
+}
+
+svg {
+    width: 600px;
+    height: 400px;
+    background-color: #8B008B;
 }

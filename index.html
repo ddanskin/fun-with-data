@@ -8,17 +8,46 @@
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
-        <div class="bar-chart"></div>
-
-        <table class="table table table-hover">
-            <thead>
-                <tr class="head">
-                    <th scope="col" class="head-date">Date</th>
-                    <th scope="col" class="head-price">Price</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="container">
+            <div class="row bars">
+                <div class="col">
+                    <h3>Bar Chart</h3>
+                    <div class="bar-chart"></div>
+                </div>
+            </div>
+            <div class="row tables">
+                <h3>Table of Prices</h3>
+                <table class="table table table-hover">
+                    <thead>
+                        <tr class="head">
+                            <th scope="col" class="head-date">Date</th>
+                            <th scope="col" class="head-price">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3>SVG Graphics</h3>
+                    <div id="visual">
+                        <svg>
+                            <line x1="0" y1="400" x2="600" y2="0"
+                                style="stroke: #D8BFD8; stroke-width:10px"/>
+                            <rect 
+                                x="240" y="100"
+                                width="200" height="200"
+                                style="fill: #FF00FF;"
+                                />
+                            <circle
+                                cx="450" cy="100" r="80"
+                                style="fill: #8A2BE2"
+                            />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
