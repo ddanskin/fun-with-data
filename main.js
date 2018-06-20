@@ -1,13 +1,23 @@
-const barData = [23, 88, 30, 18, 56, 60, 73, 91, 40, 50];
+const barData = [18, 23, 56, 80, 30, 60, 73, 91, 40, 50];
 
 let height = 400,
     width = 600,
     barWidth = 50,
     barOffset = 5;
 
+let xScale = d3.scaleBand()
+    .domain(barData)
+    .paddingInner(.1)
+    .paddingOuter(.3)
+    .range([0, width]);
+
 let yScale = d3.scaleLinear()
     .domain([0, d3.max(barData)])
     .range([0, height]);
+
+let colors = d3.scaleLinear()
+    .domain([0, d3.max(barData)])
+    .range(['#B3E5FC', '#01579B'])
 
 d3.select('#barChart')
     .append('svg')
@@ -16,9 +26,11 @@ d3.select('#barChart')
         .style('background', '#CCCCCC')
     .selectAll('rect').data(barData)
         .enter().append('rect')
-            .style('fill','#1C86EE')
+            .attr('fill',function(d) {
+                return colors(d);
+            })
             .attr('x', function(d, i) { 
-                return i * (barWidth + barOffset); 
+                return xScale(d); 
             })
             .attr('y', function(d) { 
                 return height - yScale(d); 
@@ -26,7 +38,9 @@ d3.select('#barChart')
             .attr('height', function(d) { 
                     return yScale(d); 
             })
-            .attr('width', barWidth)
+            .attr('width', function(d) {
+                return xScale.bandwidth();
+            })
             .text(function(d) {
                 return d;
             });
