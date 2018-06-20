@@ -43,6 +43,14 @@ d3.select('#barChart')
             })
             .text(function(d) {
                 return d;
+            })
+            .on('mouseover', function(d) {
+                d3.select(this)
+                    .style('opacity', .5)
+            })
+            .on('mouseout', function(d) {
+                d3.select(this)
+                    .style('opacity', 1)
             });
 
 const tableData = [
