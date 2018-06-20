@@ -19,6 +19,8 @@ let colors = d3.scaleLinear()
     .domain([0, d3.max(barData)])
     .range(['#B3E5FC', '#01579B'])
 
+// build barChart
+let barChart = 
 d3.select('#barChart')
     .append('svg')
         .attr('width', width)
@@ -32,12 +34,8 @@ d3.select('#barChart')
             .attr('x', function(d, i) { 
                 return xScale(d); 
             })
-            .attr('y', function(d) { 
-                return height - yScale(d); 
-            })
-            .attr('height', function(d) { 
-                    return yScale(d); 
-            })
+            .attr('y', height)
+            .attr('height', 0)
             .attr('width', function(d) {
                 return xScale.bandwidth();
             })
@@ -52,6 +50,20 @@ d3.select('#barChart')
                 d3.select(this)
                     .style('opacity', 1)
             });
+
+// create bar chart with transition animation
+barChart.transition()
+    .attr('y', function(d) { 
+        return height - yScale(d); 
+    })
+    .attr('height', function(d) { 
+        return yScale(d); 
+    })
+    .delay(function(d, i) {
+        return i * 20;
+    })
+    .duration(1000)
+    .ease(d3.easeBounceOut);
 
 const tableData = [
     { date: '7/01/2018', price: 147.00 },
