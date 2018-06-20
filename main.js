@@ -15,9 +15,16 @@ let yScale = d3.scaleLinear()
     .domain([0, d3.max(barData)])
     .range([0, height]);
 
+let yAxisValues = d3.scaleLinear()
+    .domain([0, d3.max(barData)])
+    .range([height, 0]);
+
+let yAxisTicks = d3.axisLeft(yAxisValues)
+    .ticks(10);
+
 let colors = d3.scaleLinear()
     .domain([0, d3.max(barData)])
-    .range(['#B3E5FC', '#01579B'])
+    .range(['#B3E5FC', '#01579B']);
 
 // build barChart
 let barChart = 
@@ -26,6 +33,7 @@ d3.select('#barChart')
         .attr('width', width)
         .attr('height', height)
         .style('background', '#CCCCCC')
+    .append('g')
     .selectAll('rect').data(barData)
         .enter().append('rect')
             .attr('fill',function(d) {
@@ -50,6 +58,10 @@ d3.select('#barChart')
                 d3.select(this)
                     .style('opacity', 1)
             });
+
+let yGuide = d3.select('#barChart svg').append('g')
+                .attr('transform', 'translate(20,0)')
+                .call(yAxisTicks)
 
 // create bar chart with transition animation
 barChart.transition()
