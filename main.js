@@ -1,12 +1,35 @@
-const data = [23, 88, 30, 18, 56, 60, 73, 91, 40, 50];
+const barData = [23, 88, 30, 18, 56, 60, 73, 91, 40, 50];
 
-//create bar chart using data
-d3.select(".bar-chart")
-    .selectAll("div")
-        .data(data)
-    .enter().append("div")
-        .style("width", function(d) { return d * 10 + "px"; })
-        .text(function(d) { return d; });
+let height = 400,
+    width = 600,
+    barWidth = 50,
+    barOffset = 5;
+/*
+let scaleX = d3.scaleLinear()
+    .domain([0, d3.max(barData)])
+    .range(0, height);
+*/
+d3.select('#barChart')
+    .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .style('background', '#999999')
+    .selectAll('rect').data(barData)
+        .enter().append('rect')
+            .style('fill','#1C86EE')
+            .attr('x', function(d, i) { 
+                return i * (barWidth + barOffset); 
+            })
+            .attr('y', function(d) { 
+                return height - d; 
+            })
+            .attr('height', function(d) { 
+                    return d; 
+            })
+            .attr('width', barWidth)
+            .text(function(d) {
+                return d;
+            });
 
 const tableData = [
     { date: '7/01/2018', price: 147.00 },
@@ -17,50 +40,49 @@ const tableData = [
 ];
 
 // create table of dates and prices
-d3.select("tbody")
-    .selectAll("tr")
+d3.select('tbody')
+    .selectAll('tr')
     .data(tableData)
-    .enter().append("tr")
+    .enter().append('tr')
     .html(function(d) {
-        return "<th scope='row'>" + d.date + 
-            "</th><td>" + "$" + d.price + "</td>"
+        return '<th scope="row">' + d.date + 
+            '</th><td>' + '$' + d.price + '</td>'
     });
 
 // create svg with rectangle
-d3.select("#visual")
-    .append("svg")
-        .attr("width", 600)
-        .attr("height", 400)
-        .style("background", "#8B008B")
-        .append("rect")
-            .attr("x", 240)
-            .attr("y", 100)
-            .attr("width", 200)
-            .attr("height", 200)
-            .style("fill", "#FF00FF");
-
+d3.select('#visual')
+    .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .style('background', '#8B008B')
+        .append('rect')
+            .attr('x', 240)
+            .attr('y', 100)
+            .attr('width', 200)
+            .attr('height', 200)
+            .style('fill', '#FF00FF');
 // add circle to svg
-d3.select("#visual svg")
-    .append("circle")
-        .attr("cx", 450)
-        .attr("cy", 100)
-        .attr("r", 80)
-        .style("fill", "#8A2BE2");
+d3.select('#visual svg')
+    .append('circle')
+        .attr('cx', 450)
+        .attr('cy', 100)
+        .attr('r', 80)
+        .style('fill', '#8A2BE2');
 
 // add triangle to svg
-d3.select("#visual svg")
-    .append("g")
-        .append("polyline")
-            .attr("points", "520 380, 550 330, 580 380")
-            .style("fill", "#BA55D3");
+d3.select('#visual svg')
+    .append('g')
+        .append('polyline')
+            .attr('points', '520 380, 550 330, 580 380')
+            .style('fill', '#BA55D3');
 
 // add text to svg
-d3.select("#visual svg")
-    .append("text")
-        .attr("x", 30)
-        .attr("y", 30)
-        .attr("font-family", "Monospace")
-        .attr("font-size", 24)
-        .style("fill", "#fff")
-        .text("Hello, World!");
+d3.select('#visual svg')
+    .append('text')
+        .attr('x', 30)
+        .attr('y', 30)
+        .attr('font-family', 'Monospace')
+        .attr('font-size', 24)
+        .style('fill', '#fff')
+        .text('Hello, World!');
 
