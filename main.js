@@ -4,16 +4,16 @@ let height = 400,
     width = 600,
     barWidth = 50,
     barOffset = 5;
-/*
-let scaleX = d3.scaleLinear()
+
+let yScale = d3.scaleLinear()
     .domain([0, d3.max(barData)])
-    .range(0, height);
-*/
+    .range([0, height]);
+
 d3.select('#barChart')
     .append('svg')
         .attr('width', width)
         .attr('height', height)
-        .style('background', '#999999')
+        .style('background', '#CCCCCC')
     .selectAll('rect').data(barData)
         .enter().append('rect')
             .style('fill','#1C86EE')
@@ -21,10 +21,10 @@ d3.select('#barChart')
                 return i * (barWidth + barOffset); 
             })
             .attr('y', function(d) { 
-                return height - d; 
+                return height - yScale(d); 
             })
             .attr('height', function(d) { 
-                    return d; 
+                    return yScale(d); 
             })
             .attr('width', barWidth)
             .text(function(d) {
