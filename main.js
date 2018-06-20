@@ -1,14 +1,13 @@
 const barData = [18, 23, 56, 80, 30, 60, 73, 91, 40, 50];
 
-let height = 400,
-    width = 600,
-    barWidth = 50,
-    barOffset = 5;
-
+let margin = { top: 0, right: 0, bottom: 10, left: 20 },
+    height = 400 - margin.top - margin.bottom,
+    width = 600 - margin.left - margin.right;
+    
 let xScale = d3.scaleBand()
     .domain(barData)
     .paddingInner(.1)
-    .paddingOuter(.3)
+    .paddingOuter(.2)
     .range([0, width]);
 
 let yScale = d3.scaleLinear()
@@ -30,10 +29,10 @@ let colors = d3.scaleLinear()
 let barChart = 
 d3.select('#barChart')
     .append('svg')
-        .attr('width', width)
-        .attr('height', height)
-        .style('background', '#CCCCCC')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
     .append('g')
+    .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')') 
     .selectAll('rect').data(barData)
         .enter().append('rect')
             .attr('fill',function(d) {
